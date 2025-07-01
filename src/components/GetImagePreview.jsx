@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import { FaCamera } from "react-icons/fa";
 
@@ -10,7 +10,7 @@ function GetImagePreview({
     className,
     cameraIcon=false,
     cameraSize = 20,
-    image
+    image,
 }){
     const [preview,setPreview] = useState(null)
 
@@ -19,6 +19,12 @@ function GetImagePreview({
         setPreview(URL.createObjectURL(files[0]))
         return files
     }
+
+    useEffect(()=>{
+        return () => {
+            if(preview) URL.revokeObjectURL(preview)
+        }
+    },[preview])
 
     return(
         <>
@@ -56,7 +62,9 @@ function GetImagePreview({
                         }}
                         />
                     )}
-                        rules={{required:`${name} is required`}}
+                        rules={
+                            {required:`${name} is required`}
+                        }
                     />
                 </label>
             </div>

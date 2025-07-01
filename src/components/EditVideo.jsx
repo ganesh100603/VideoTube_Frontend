@@ -24,7 +24,7 @@ function EditVideo({
     const uploading = useSelector((state)=>state.video.uploading)
 
     const handleClosePopUp = () =>{
-        setEditVideoPopUp=((prev)=>({
+        setEditVideoPopUp((prev)=>({
             ...prev,
             uploadVideo:false,
             editVideo:false
@@ -78,7 +78,7 @@ function EditVideo({
                             className="cursor-pointer"
                         />
                     </div>
-                    <div>
+                    <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-5 z-40">
                         <div>
                             <GetImagePreview
                             name={"thumbnail"}
@@ -94,7 +94,7 @@ function EditVideo({
                             </span>
                         </div>
 
-                        <div>
+                        <div className="flex flex-col justify-between sm:gap-0 gap-2">
                             <Input2
                             type="text"
                             label="Title "
@@ -102,7 +102,9 @@ function EditVideo({
                                 required:"Title is required"
                             })}
                             />
-                            <span>{errors.title?.message}</span>
+                            <span className="text-red-500 text-xs">
+                                {errors.title?.message}
+                            </span>
 
                             <div className="mb-4">
                                 <label>Description *</label>

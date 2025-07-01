@@ -2,10 +2,14 @@ import {createSlice,createAsyncThunk} from "@reduxjs/toolkit"
 import axiosInstance  from "../../helpers/axiosInstance.js"
 import toast from "react-hot-toast"
 
+const setUserLocalStorage = (user) => {
+  localStorage.setItem("user", JSON.stringify(user));
+};
+
 const initialState = {
     loading:false,
     status:false,
-    userData:null
+    userData:JSON.parse(localStorage.getItem("user")) || null
 }
 
 export const createAccount = createAsyncThunk("register",async(data)=>{
@@ -132,6 +136,7 @@ const authSlice = createSlice({
             state.loading = false
             state.status = true
             state.userData = action.payload
+            setUserLocalStorage(action.payload)
         })
         builder.addCase(userLogout.pending,(state)=>{
             state.loading = true
@@ -140,6 +145,7 @@ const authSlice = createSlice({
             state.loading = false
             state.status = false
             state.userData = null
+            localStorage.removeItem("user")
         })
         builder.addCase(getCurrentUser.pending,(state)=>{
             state.loading = true
@@ -160,6 +166,7 @@ const authSlice = createSlice({
         builder.addCase(updateUserAvatar.fulfilled,(state,action)=>{
             state.loading = false
             state.userData = action.payload
+            setUserLocalStorage(action.payload)
         })
         builder.addCase(updateUserAvatar.rejected,(state)=>{
             state.loading = false
@@ -170,6 +177,7 @@ const authSlice = createSlice({
         builder.addCase(updateUserCoverImage.fulfilled,(state,action)=>{
             state.loading = false
             state.userData = action.payload
+            setUserLocalStorage(action.payload)
         })
         builder.addCase(updateUserCoverImage.rejected,(state)=>{
             state.loading = false
@@ -180,6 +188,7 @@ const authSlice = createSlice({
         builder.addCase(updateUserDetails.fulfilled,(state,action)=>{
             state.loading = false
             state.userData = action.payload
+            setUserLocalStorage(action.payload)
         })
     }
 })

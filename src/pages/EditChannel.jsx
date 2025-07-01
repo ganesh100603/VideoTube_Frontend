@@ -8,8 +8,6 @@ function EditChannel(){
     const loading = useSelector((state)=>state.auth?.loading)
     window.scrollTo(0,0)
 
-    console.log(channel)
-
     return(
         <>
         {loading&&(

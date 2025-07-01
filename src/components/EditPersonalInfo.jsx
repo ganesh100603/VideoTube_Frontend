@@ -3,6 +3,7 @@ import {Input2,Button} from "."
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserDetails } from "../store/Slices/authSlice";
+import { updateProfileData } from "../store/Slices/userSlice";
 
 function EditPersonalInfo(){
     const {
@@ -21,6 +22,11 @@ function EditPersonalInfo(){
 
     const saveChanges = (data) =>{
         dispatch(updateUserDetails(data))
+        .then((res)=>{
+            if(res?.payload){
+                dispatch(updateProfileData(res.payload))
+            }
+        })
     }
 
     const reset = (e) => {

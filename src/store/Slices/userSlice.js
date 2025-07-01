@@ -30,7 +30,14 @@ export const getWatchHistory = createAsyncThunk("getWatchHistory",async()=>{
 const userSlice = createSlice({
     name:"user",
     initialState,
-    reducers:{},
+    reducers:{
+        updateProfileData(state,action){
+            state.profileData={
+                ...state.profileData,
+                ...action.payload
+            }
+        }
+    },
     extraReducers:(builder)=>{
         builder.addCase(getUserChannelProfile.pending,(state)=>{
             state.loading=true
@@ -48,5 +55,5 @@ const userSlice = createSlice({
         })
     }
 })
-
+export const {updateProfileData} = userSlice.actions
 export default userSlice.reducer
