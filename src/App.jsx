@@ -54,7 +54,7 @@ function App(){
             />
             
             <Route 
-            path="/search/:query"
+            path="search/:query"
             element={
             <AuthLayout authentication={false}>
               <SearchVideos/>
@@ -187,7 +187,7 @@ function App(){
         }
         />
         <Route
-        path="/terms&conditions"
+        path="/terms-conditions"
         element={
           <AuthLayout authentication={true}>
             <TermsAndConditions/>
