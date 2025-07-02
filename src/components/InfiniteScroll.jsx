@@ -16,7 +16,7 @@ function InfiniteScroll({children,fetchMore,hasNextPage}){
 
         if(elementRef) observer.observe(elementRef)
         
-        return ()=>observer.observe(elementRef)
+        return ()=>observer.unobserve(elementRef)
     },[fetchMore,hasNextPage])
 
     return(

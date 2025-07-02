@@ -18,14 +18,16 @@ function ChannelSubscribers(){
     return(
         <>
             {subscribers?.map((subscriber)=>(
-                <Link
+                <div
                 key={subscriber.subscriber._id}
-                className="flex border-b border-slate-500 px-4 py-1 justify-between items-center text-white"
+                // to={`/channel/${subscriber?.subscriber?.username}`}
+                className="flex border-b border-slate-500 px-4 py-2 justify-between items-center text-white cursor-pointer"
                 >
                     <div className="flex gap-3 items-center">
                         <Avatar
                         src={subscriber?.subscriber?.avatar}
                         channelName={subscriber?.subscriber?.username}
+                        width={10}
                         />
 
                         <div>
@@ -44,7 +46,7 @@ function ChannelSubscribers(){
                             {subscriber?.subscriber?.subscribedToSubscriber?"Subscribed" : "Subscribe"}
                         </Button>
                     </div>
-                </Link>
+                </div>
             ))}
         </>
     )

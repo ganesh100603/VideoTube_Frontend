@@ -66,11 +66,15 @@ function Navbar(){
                 </div>
                 {authStatus?(
                     <div className="rounded-full sm:block hidden">
+                        <Link
+                        to={`/channel/${username}/videos`}
+                        >
                         <img
                         src={profileImg}
                         alt="profileImg"
                         className="rounded-full w-10 h-10 object-cover"
                         />
+                        </Link>
                     </div>
                 ):(
                     <div className="space-x-2 sm:block hidden">

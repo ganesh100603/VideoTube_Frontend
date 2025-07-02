@@ -27,8 +27,8 @@ function SignUp(){
                 userLogin({username,password})
             )
 
-            if(loginResult?.type === "login/fullfilled"){
-                navigate("/terms&condtions")
+            if(loginResult?.type === "login/fulfilled"){
+                navigate("/terms-conditions")
             }else{
                 navigate("/login")
             }
