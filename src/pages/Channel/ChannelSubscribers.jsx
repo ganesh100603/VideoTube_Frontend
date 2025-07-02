@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function ChannelSubscribers(){
     const dispatch = useDispatch()
     const channelId = useSelector((state)=>state.user.profileData?._id)
-    const subscribers = useSelector((state)=>state.subscription.ChannelSubscribers)
+    const subscribers = useSelector((state)=>state.subscription.channelSubscribers)
 
     useEffect(()=>{
         if(channelId){

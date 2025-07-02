@@ -19,21 +19,21 @@ function SearchVideos(){
         const sortType = searchParams.get("sortType")
         const sortBy = searchParams.get("sortBy")
         dispatch(
-            getAllVideos(
+            getAllVideos({
                 query,
                 sortBy,
                 sortType
-            )
+            })
         )
         setFilterOpen(false)
-        return ()=>dispatch(makeVideosNull)
+        return ()=>dispatch(makeVideosNull())
     },[dispatch,query,searchParams])
 
     const handleSortParams = (newSortBy,newSortType='asc')=>{
         setSearchParams({sortBy:newSortBy,sortType:newSortType})
     }
 
-    if(videos?.totaldocs === 0){
+    if(videos?.totalDocs === 0){
         return <NoVideoFound/>
     }
 
@@ -44,21 +44,24 @@ function SearchVideos(){
     return(
         <>
             <div
-            className="w-full h-10 flex items-center justify-end font-bold cursor-pointer px-8"
+            className="w-full h-10 flex items-center justify-end font-bold cursor-pointer px-8 gap-1 relative"
+            onClick={()=>setFilterOpen((prev)=>!prev)}
             >
-                <span className="text-white hover:text-purple-500">
-                    Filters
-                </span>
                 <FaFilter
                 size={20}
                 className="text-purple-500 hover:text-purple-800"
                 />
-            </div>
+                <span className="text-white hover:text-purple-500">
+                    Filters
+                </span>
+                
             
-            <div className="w-full text-white">
+            
+            
                 {filterOpen&&(
-                    <div className="w-full absolute bg-transparent">
-                        <div className="max-w-sm border border-slate-800 rounded bg-[#222222] fixed mx-auto z-50 inset-x-0 h-96 p-5">
+                    // <div className="w-full absolute bg-transparent">
+                        <div className="absolute top-full right-0 mt-2 w-72 border border-slate-800 rounded bg-[#222222] z-50 p-5
+                        ">
                             <h1 className="font-semibold text-lg">
                                 Search Filters
                             </h1>
@@ -129,15 +132,16 @@ function SearchVideos(){
                                 </tr>
                             </table>
                         </div>
-                    </div>
+                    // </div>
                 )}
-
+            </div>
+            {/* <div className="w-full text-white"> */}
                 <div className="grid h-screen xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 text-white overflow-y-scroll">
                     {videos&&(
                         videos?.docs?.map((video)=>(
                             <VideoList
                             key={video?._id}
-                            avatar={video?.ownerDetails?.avatar.url}
+                            avatar={video?.ownerDetails?.avatar}
                             duration={video?.duration}
                             title={video?.title}
                             thumbnail={video?.thumbnail?.url}
@@ -149,7 +153,7 @@ function SearchVideos(){
                         ))
                     )}
                 </div>
-            </div>
+            {/* </div> */}
         </>
     )
 }

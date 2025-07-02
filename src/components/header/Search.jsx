@@ -14,7 +14,7 @@ function Search(){
 
     return(
         <>
-            <form onClick={handleSubmit(search)}>
+            <form onSubmit={handleSubmit(search)}>
                 <Input
                 placeholder="Search"
                 {...register("query",{
