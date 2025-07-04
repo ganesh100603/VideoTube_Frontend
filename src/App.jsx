@@ -54,7 +54,7 @@ function App(){
             />
             
             <Route 
-            path="/channel/:username"
+            path="channel/:username"
             element={
             <AuthLayout authentication={true}>
               <Channel/>
@@ -95,7 +95,7 @@ function App(){
         </Route>
         
             <Route 
-            path="/history"
+            path="history"
             element={
             <AuthLayout authentication={true}>
               <History/>
@@ -103,7 +103,7 @@ function App(){
             />
             
             <Route 
-            path="/liked-videos"
+            path="liked-videos"
             element={
             <AuthLayout authentication={true}>
               <LikedVideos/>
@@ -111,7 +111,7 @@ function App(){
             />
             
             <Route 
-            path="/subscriptions"
+            path="subscriptions"
             element={
             <AuthLayout authentication={true}>
               <MySubscriptions/>
@@ -119,7 +119,7 @@ function App(){
             />
             
             <Route 
-            path="/edit"
+            path="edit"
             element={
             <AuthLayout authentication={true}>
               <EditChannel/>
