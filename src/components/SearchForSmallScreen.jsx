@@ -17,7 +17,7 @@ function SearchForSmallScreen({open,setSearchOpen}){
     return(
         <>
         {open && (
-            <div className="fixed bg-black bg-opacity-90 z-50 inset-0 h-screen w-full flex items-center justify-start">
+            <div className="fixed bg-black bg-opacity-90 z-50 inset-0 h-screen w-full flex items-start justify-start">
                 <div className="sm:p-8 p-4 relative w-full">
                     <div className="absolute top-5 right-5">
                         <IoCloseCircleOutline

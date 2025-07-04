@@ -50,7 +50,7 @@ function Navbar(){
                     <Search/>
                 </div>
 
-                <div className="w-full text-white inline-text justify-end sm:hidden pr-4">
+                <div className="w-full text-white inline-flex justify-end sm:hidden pr-4">
                     <CiSearch
                     size={30}
                     fontWeight={"bold"}
@@ -60,7 +60,7 @@ function Navbar(){
                     {openSearch&&(
                         <SearchForSmallScreen
                         open={openSearch}
-                        setOpenSearch={setOpenSearch}
+                        setSearchOpen={setOpenSearch}
                         />
                     )}
                 </div>

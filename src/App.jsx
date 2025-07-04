@@ -26,17 +26,9 @@ import Layout from "./Layout";
 function App(){
   const dispatch = useDispatch()
 
-  // useEffect(()=>{
-  //   dispatch(getCurrentUser())
-  // },[dispatch])
-
-  useEffect(() => {
-  const hasAccessToken = document.cookie.includes("accessToken");
-  if (hasAccessToken) {
-    dispatch(getCurrentUser());
-  }
-}, [dispatch]);
-
+  useEffect(()=>{
+    dispatch(getCurrentUser())
+  },[dispatch])
 
   return(
     <>
