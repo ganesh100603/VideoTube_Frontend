@@ -12,11 +12,22 @@ function HomePage(){
     const hasNextPage = useSelector((state)=>state.video?.videos?.hasNextPage)
     const [page,setPage] = useState(1)
     const [isLoading,setIsLoading] = useState(false)
+    const [wakingUp,setWakingUp] = useState(false)
 
     useEffect(()=>{
-        dispatch(getAllVideos({page:1,limit:10}))
+        const timeoutId = setTimeout(() => {
+            setWakingUp(true)
+        }, 2000);
+        
+        dispatch(getAllVideos({page:1,limit:10})).finally(()=>{
+            clearTimeout(timeoutId)
+            setWakingUp(false)
+        })
 
-        return ()=>dispatch(makeVideosNull())
+        return ()=>{
+            dispatch(makeVideosNull())
+            clearTimeout(timeoutId)
+        }
     },[dispatch])
 
     useEffect(()=>{
@@ -42,6 +53,12 @@ function HomePage(){
 
     return(
         <Container>
+        {wakingUp&&(
+            <div className="text-center text-yellow-400 font-semibold mb-4 text-lg animate-pulse">
+                Server is waking up, Please Wait...
+            </div>
+        )}
+
             <InfiniteScroll
             dataLength={videos?.length || 0}
             next={fetchMoreVideos}
